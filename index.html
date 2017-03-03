@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/auth.js"></script>
+	<script src="js/client.js"></script>
+    <script src="js/app.js"></script>
+  <style type="text/css">
+    html, body{
+      background-color: #000;
+      height:100%;     
+    }
+    .scroll {
+      background-color: #000;
+      height:100%;
+    }
+
+    .left {
+      width: 75%;
+      height: 100%;
+      float: left;
+      position: relative;
+    }
+
+    .right {
+      float: right;
+      width: 24%;
+      position: relative;
+    }
+
+    ion-content {
+      background-color: #000;
+      width: 100%;
+    }
+  </style>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane>
+      <ion-header-bar class="bar-balanced">
+        <h1 class="title">GepBox - Bar</h1>
+      </ion-header-bar>
+      <ion-content ng-controller="AppCtrl">      
+        <div class="left">
+          <iframe id="iframe" src="https://www.youtube.com/embed/pRgCcgbjVDA?autoplay=1" style="width:100%; height:100%;" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="right">
+		
+		<div class="list" style="margin-top:12px;">
+		  <div class="item item-input-inset">
+			<label class="item-input-wrapper" style="background-color:#fff;" ng-model="vm.pesquisa">
+			  <input type="text" placeholder="Descrição" ng-model="vm.pesquisa">
+			</label>
+			<input id="search-button" type="button" class="button button-positive" ng-click="pesquisar()" disabled value="Pesquisar" />
+		  </div>
+		</div>
+		
+		<div class="list">
+			<a ng-repeat="item in list" class="item item-thumbnail-left item-text-wrap" ng-click="tocar(item.id.videoId)">
+			  <img src="{{item.snippet.thumbnails.default.url}}" />
+			  <h2>{{item.snippet.title}}</h2>
+			  <p>{{item.snippet.channelTitle}}</p>
+			</a>
+		</div>		
+        </div>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
